@@ -97,6 +97,20 @@ function App() {
 
       <Converter onSpeedChange={setHighlightMph} selectedRowData={selectedRowData} />
       <PaceTable highlightMph={highlightMph} onRowClick={handleRowClick} />
+
+      <footer className="footer">
+        <p>
+          <a
+            href="https://github.com/DougieWougie/RunningApplication"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            View on GitHub
+          </a>
+          {' • '}
+          Licensed under MIT
+        </p>
+      </footer>
     </>
   );
 }
