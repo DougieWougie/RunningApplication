@@ -79,6 +79,7 @@ function App() {
 
       <div style={{ marginBottom: '1rem' }}>
         <img
+          className="header-image"
           src="/header-image.png"
           alt="Mascot"
           style={{

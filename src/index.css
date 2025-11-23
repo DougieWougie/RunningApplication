@@ -224,3 +224,21 @@ tr:last-child td {
   margin-bottom: 1.5rem;
   color: var(--color-text-primary);
 }
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.header-image {
+  transition: transform 0.1s ease;
+}
+
+.header-image:hover {
+  animation: spin 1s ease-in-out;
+}
