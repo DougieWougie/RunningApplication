@@ -152,14 +152,29 @@ table {
   width: 100%;
   border-collapse: collapse;
   margin-top: 1rem;
-  table-layout: fixed;
+  min-width: 600px;
+}
+
+@media (min-width: 768px) {
+  table {
+    table-layout: fixed;
+    min-width: auto;
+  }
 }
 
 th,
 td {
-  padding: 0.75rem;
+  padding: 0.5rem;
   text-align: left;
   border-bottom: 1px solid var(--color-border);
+}
+
+@media (min-width: 768px) {
+
+  th,
+  td {
+    padding: 0.75rem;
+  }
 }
 
 th {
