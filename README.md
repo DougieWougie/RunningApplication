@@ -1,16 +1,78 @@
-# React + Vite
+# Running Pace Calculator
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A modern, responsive web application for runners to calculate paces and convert speeds. Built with React and Vite.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+-   **Speed & Pace Conversion**: Instantly convert between:
+    -   Speed: MPH (Miles Per Hour) and KPH (Kilometers Per Hour)
+    -   Pace: Minutes per Mile and Minutes per Kilometer
+-   **Reference Table**: A handy lookup table for common running paces.
+-   **Dark Mode**: Toggle between light and dark themes for comfortable viewing in any lighting.
+-   **Responsive Design**: Works seamlessly on desktop, tablet, and mobile devices.
 
-## React Compiler
+## Tech Stack
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+-   [React](https://react.dev/)
+-   [Vite](https://vitejs.dev/)
+-   [Vitest](https://vitest.dev/)
 
-## Expanding the ESLint configuration
+## Getting Started
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+### Prerequisites
+
+-   Node.js (v18 or higher recommended)
+-   npm (comes with Node.js)
+
+### Installation
+
+1.  Clone the repository:
+    ```bash
+    git clone https://github.com/DougieWougie/RunningApplication.git
+    cd RunningApplication
+    ```
+
+2.  Install dependencies:
+    ```bash
+    npm install
+    ```
+
+## Usage
+
+### Development
+
+To start the development server:
+
+```bash
+npm run dev
+```
+
+Open [http://localhost:5173](http://localhost:5173) in your browser to view the app.
+
+### Building for Production
+
+To build the application for production:
+
+```bash
+npm run build
+```
+
+The build artifacts will be stored in the `dist/` directory.
+
+### Preview Production Build
+
+To preview the production build locally:
+
+```bash
+npm run preview
+```
+
+## Testing
+
+This project uses Vitest for unit testing.
+
+To run the tests:
+
+```bash
+npm run test
+```
