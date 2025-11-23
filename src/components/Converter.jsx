@@ -1,11 +1,20 @@
 import React, { useState, useEffect } from 'react';
 import { mphToKph, kphToMph, speedToPace, paceToSpeed } from '../utils/paceCalculator';
 
-const Converter = ({ onSpeedChange }) => {
+const Converter = ({ onSpeedChange, selectedRowData }) => {
     const [mph, setMph] = useState('');
     const [kph, setKph] = useState('');
     const [paceMile, setPaceMile] = useState('');
     const [paceKm, setPaceKm] = useState('');
+
+    useEffect(() => {
+        if (selectedRowData) {
+            setMph(selectedRowData.mph);
+            setKph(selectedRowData.kph);
+            setPaceMile(selectedRowData.paceMile);
+            setPaceKm(selectedRowData.paceKm);
+        }
+    }, [selectedRowData]);
 
     const handleMphChange = (e) => {
         const val = e.target.value;

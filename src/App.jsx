@@ -6,6 +6,7 @@ function App() {
   const [theme, setTheme] = useState('light');
   const [highlightMph, setHighlightMph] = useState(null);
   const [fontSize, setFontSize] = useState(16);
+  const [selectedRowData, setSelectedRowData] = useState(null);
 
   useEffect(() => {
     // Check system preference or saved preference
@@ -20,7 +21,7 @@ function App() {
   }, []);
 
   useEffect(() => {
-    document.documentElement.style.fontSize = `${fontSize}px`;
+    document.documentElement.style.setProperty('--base-font-size', `${fontSize}px`);
     localStorage.setItem('fontSize', fontSize);
   }, [fontSize]);
 
@@ -40,6 +41,11 @@ function App() {
 
   const increaseFontSize = () => {
     setFontSize(prev => Math.min(prev + 2, 24));
+  };
+
+  const handleRowClick = (rowData) => {
+    setHighlightMph(rowData.mph);
+    setSelectedRowData(rowData);
   };
 
   const decreaseFontSize = () => {
@@ -88,8 +94,8 @@ function App() {
 
       <h1>Running Pace Calculator</h1>
 
-      <Converter onSpeedChange={setHighlightMph} />
-      <PaceTable highlightMph={highlightMph} onRowClick={setHighlightMph} />
+      <Converter onSpeedChange={setHighlightMph} selectedRowData={selectedRowData} />
+      <PaceTable highlightMph={highlightMph} onRowClick={handleRowClick} />
     </>
   );
 }

@@ -2,6 +2,7 @@
   font-family: 'Poppins', system-ui, -apple-system, sans-serif;
   line-height: 1.5;
   font-weight: 400;
+  --base-font-size: 16px;
 
   color-scheme: light dark;
 
@@ -50,6 +51,7 @@ body {
   background-color: var(--color-bg);
   color: var(--color-text-primary);
   transition: background-color 0.3s ease, color 0.3s ease;
+  font-size: var(--base-font-size);
 }
 
 #root {
@@ -61,7 +63,7 @@ body {
 }
 
 h1 {
-  font-size: 3.2em;
+  font-size: 51.2px;
   line-height: 1.1;
   background: -webkit-linear-gradient(315deg, var(--color-primary) 25%, #a855f7);
   background-clip: text;

@@ -34,7 +34,7 @@ const PaceTable = ({ highlightMph, onRowClick }) => {
                         {data.map((row) => (
                             <tr
                                 key={row.mph}
-                                onClick={() => onRowClick && onRowClick(row.mph)}
+                                onClick={() => onRowClick && onRowClick(row)}
                                 className={activeRowMph === row.mph ? 'highlighted-row' : ''}
                                 style={{ cursor: 'pointer' }}
                             >
