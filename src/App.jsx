@@ -5,6 +5,7 @@ import PaceTable from './components/PaceTable';
 function App() {
   const [theme, setTheme] = useState('light');
   const [highlightMph, setHighlightMph] = useState(null);
+  const [fontSize, setFontSize] = useState(16);
 
   useEffect(() => {
     // Check system preference or saved preference
@@ -18,6 +19,18 @@ function App() {
     }
   }, []);
 
+  useEffect(() => {
+    document.documentElement.style.fontSize = `${fontSize}px`;
+    localStorage.setItem('fontSize', fontSize);
+  }, [fontSize]);
+
+  useEffect(() => {
+    const savedFontSize = localStorage.getItem('fontSize');
+    if (savedFontSize) {
+      setFontSize(parseInt(savedFontSize));
+    }
+  }, []);
+
   const toggleTheme = () => {
     const newTheme = theme === 'light' ? 'dark' : 'light';
     setTheme(newTheme);
@@ -25,11 +38,38 @@ function App() {
     localStorage.setItem('theme', newTheme);
   };
 
+  const increaseFontSize = () => {
+    setFontSize(prev => Math.min(prev + 2, 24));
+  };
+
+  const decreaseFontSize = () => {
+    setFontSize(prev => Math.max(prev - 2, 12));
+  };
+
   return (
     <>
       <button className="theme-toggle" onClick={toggleTheme} aria-label="Toggle Dark Mode">
         {theme === 'light' ? '🌙' : '☀️'}
       </button>
+
+      <div className="font-size-controls">
+        <button
+          className="font-size-btn"
+          onClick={decreaseFontSize}
+          disabled={fontSize <= 12}
+          aria-label="Decrease Font Size"
+        >
+          A-
+        </button>
+        <button
+          className="font-size-btn"
+          onClick={increaseFontSize}
+          disabled={fontSize >= 24}
+          aria-label="Increase Font Size"
+        >
+          A+
+        </button>
+      </div>
 
       <div style={{ marginBottom: '1rem' }}>
         <img
