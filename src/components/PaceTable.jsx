@@ -1,8 +1,17 @@
 import React, { useMemo } from 'react';
 import { generatePaceTableData } from '../utils/paceCalculator';
 
-const PaceTable = () => {
+const PaceTable = ({ highlightMph, onRowClick }) => {
     const data = useMemo(() => generatePaceTableData(), []);
+
+    const activeRowMph = useMemo(() => {
+        if (!highlightMph || isNaN(highlightMph)) return null;
+        const target = parseFloat(highlightMph);
+        // Data is descending by MPH (15.0 -> 3.0)
+        // We want the first row where row.mph <= target
+        const match = data.find(row => parseFloat(row.mph) <= target);
+        return match ? match.mph : null;
+    }, [data, highlightMph]);
 
     return (
         <div className="card">
@@ -23,7 +32,12 @@ const PaceTable = () => {
                     </thead>
                     <tbody>
                         {data.map((row) => (
-                            <tr key={row.mph}>
+                            <tr
+                                key={row.mph}
+                                onClick={() => onRowClick && onRowClick(row.mph)}
+                                className={activeRowMph === row.mph ? 'highlighted-row' : ''}
+                                style={{ cursor: 'pointer' }}
+                            >
                                 <td>{row.paceMile}</td>
                                 <td>{row.paceKm}</td>
                                 <td>{row.mph}</td>

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { mphToKph, kphToMph, speedToPace, paceToSpeed } from '../utils/paceCalculator';
 
-const Converter = () => {
+const Converter = ({ onSpeedChange }) => {
     const [mph, setMph] = useState('');
     const [kph, setKph] = useState('');
     const [paceMile, setPaceMile] = useState('');
@@ -10,6 +10,7 @@ const Converter = () => {
     const handleMphChange = (e) => {
         const val = e.target.value;
         setMph(val);
+        if (onSpeedChange) onSpeedChange(val);
         if (val && !isNaN(val)) {
             const k = mphToKph(val);
             setKph(k);
@@ -28,10 +29,12 @@ const Converter = () => {
         if (val && !isNaN(val)) {
             const m = kphToMph(val);
             setMph(m);
+            if (onSpeedChange) onSpeedChange(m);
             setPaceMile(speedToPace(m, 'mph'));
             setPaceKm(speedToPace(val, 'kph'));
         } else {
             setMph('');
+            if (onSpeedChange) onSpeedChange('');
             setPaceMile('');
             setPaceKm('');
         }
@@ -57,6 +60,7 @@ const Converter = () => {
         if (parsed) {
             const m = paceToSpeed(parsed.min, parsed.sec, 'mph');
             setMph(m);
+            if (onSpeedChange) onSpeedChange(m);
             const k = mphToKph(m);
             setKph(k);
             setPaceKm(speedToPace(k, 'kph'));

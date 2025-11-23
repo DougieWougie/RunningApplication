@@ -4,6 +4,7 @@ import PaceTable from './components/PaceTable';
 
 function App() {
   const [theme, setTheme] = useState('light');
+  const [highlightMph, setHighlightMph] = useState(null);
 
   useEffect(() => {
     // Check system preference or saved preference
@@ -47,8 +48,8 @@ function App() {
 
       <h1>Running Pace Calculator</h1>
 
-      <Converter />
-      <PaceTable />
+      <Converter onSpeedChange={setHighlightMph} />
+      <PaceTable highlightMph={highlightMph} onRowClick={setHighlightMph} />
     </>
   );
 }
