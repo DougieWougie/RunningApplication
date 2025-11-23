@@ -12,18 +12,26 @@ const PaceTable = () => {
                     <thead>
                         <tr>
                             <th>Min / Mile</th>
+                            <th>Min / Km</th>
                             <th>MPH</th>
                             <th>KPH</th>
-                            <th>Min / Km</th>
+                            <th>5k</th>
+                            <th>10k</th>
+                            <th>Half</th>
+                            <th>Marathon</th>
                         </tr>
                     </thead>
                     <tbody>
                         {data.map((row) => (
                             <tr key={row.mph}>
                                 <td>{row.paceMile}</td>
+                                <td>{row.paceKm}</td>
                                 <td>{row.mph}</td>
                                 <td>{row.kph}</td>
-                                <td>{row.paceKm}</td>
+                                <td>{row.time5k}</td>
+                                <td>{row.time10k}</td>
+                                <td>{row.timeHalf}</td>
+                                <td>{row.timeFull}</td>
                             </tr>
                         ))}
                     </tbody>

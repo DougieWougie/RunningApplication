@@ -64,6 +64,7 @@ h1 {
   font-size: 3.2em;
   line-height: 1.1;
   background: -webkit-linear-gradient(315deg, var(--color-primary) 25%, #a855f7);
+  background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   margin-bottom: 0.5em;
@@ -149,6 +150,7 @@ table {
   width: 100%;
   border-collapse: collapse;
   margin-top: 1rem;
+  table-layout: fixed;
 }
 
 th,

@@ -29,20 +29,38 @@ export const paceToSpeed = (minutes, seconds, unit = 'mph') => {
   return parseFloat((1 / totalHours).toFixed(2));
 };
 
+export const calculateTime = (distanceKm, speedKph) => {
+  if (!speedKph || speedKph <= 0) return "--:--";
+  
+  const totalHours = distanceKm / speedKph;
+  const hours = Math.floor(totalHours);
+  const minutes = Math.floor((totalHours - hours) * 60);
+  const seconds = Math.round(((totalHours - hours) * 60 - minutes) * 60);
+
+  const paddedMinutes = minutes < 10 ? `0${minutes}` : minutes;
+  const paddedSeconds = seconds < 10 ? `0${seconds}` : seconds;
+
+  if (hours > 0) {
+    return `${hours}:${paddedMinutes}:${paddedSeconds}`;
+  }
+  return `${minutes}:${paddedSeconds}`;
+};
+
 export const generatePaceTableData = () => {
   const data = [];
-  // Generate from 5kph to 20kph (approx 3mph to 12.5mph)
-  // Or maybe better to go by common paces? 
-  // Let's go by MPH from 3.0 to 15.0 in 0.5 increments
+  // Generate from 3.0 to 15.0 mph in 0.5 increments
   for (let mph = 3.0; mph <= 15.0; mph += 0.5) {
     const kph = mphToKph(mph);
     data.push({
       mph: mph.toFixed(1),
       kph: kph.toFixed(1),
       paceMile: speedToPace(mph, 'mph'),
-      paceKm: speedToPace(kph, 'kph')
+      paceKm: speedToPace(kph, 'kph'),
+      time5k: calculateTime(5, kph),
+      time10k: calculateTime(10, kph),
+      timeHalf: calculateTime(21.0975, kph),
+      timeFull: calculateTime(42.195, kph)
     });
   }
-  return data.reverse(); // Faster paces at top? Or slower? usually faster at top is nice, or standard list. Let's do fast to slow or slow to fast. Usually tables go 3mph -> 4mph. Let's keep it ascending speed (descending pace).
-  // Actually, let's return it ascending speed (3.0, 3.5...)
+  return data.reverse(); 
 };
