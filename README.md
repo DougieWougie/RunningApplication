@@ -1,5 +1,9 @@
 # Running Pace Calculator
 
+<p align="center">
+  <img src="public/header-image.png" alt="Running Pace Calculator" width="200" />
+</p>
+
 A modern, responsive web application for runners to calculate paces and convert speeds. Built with React and Vite.
 
 ## Features
