@@ -57,18 +57,30 @@ body {
   width: 100%;
   max-width: 1280px;
   margin: 0 auto;
-  padding: 2rem;
+  padding: 1rem;
   text-align: center;
 }
 
+@media (min-width: 768px) {
+  #root {
+    padding: 2rem;
+  }
+}
+
 h1 {
-  font-size: 51.2px;
+  font-size: 2rem;
   line-height: 1.1;
   background: -webkit-linear-gradient(315deg, var(--color-primary) 25%, #a855f7);
   background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   margin-bottom: 0.5em;
+}
+
+@media (min-width: 768px) {
+  h1 {
+    font-size: 51.2px;
+  }
 }
 
 button {
@@ -96,13 +108,19 @@ button:active {
 
 .card {
   background-color: var(--color-surface);
-  padding: 2rem;
+  padding: 1rem;
   border-radius: var(--radius-lg);
   box-shadow: var(--shadow-md);
   border: 1px solid var(--color-border);
   margin-bottom: 2rem;
   text-align: left;
   font-size: var(--base-font-size);
+}
+
+@media (min-width: 768px) {
+  .card {
+    padding: 2rem;
+  }
 }
 
 .input-group {
@@ -113,7 +131,7 @@ button:active {
 }
 
 label {
-  font-size: 0.9rem;
+  font-size: 0.9em;
   color: var(--color-text-secondary);
   font-weight: 500;
 }
@@ -124,7 +142,7 @@ input {
   border: 1px solid var(--color-border);
   background-color: var(--color-bg);
   color: var(--color-text-primary);
-  font-size: 1rem;
+  font-size: 1em;
   width: 100%;
   box-sizing: border-box;
   transition: border-color 0.2s;
@@ -159,6 +177,17 @@ table {
   table {
     table-layout: fixed;
     min-width: auto;
+  }
+}
+
+table.compact-table {
+  min-width: auto;
+  max-width: 600px;
+}
+
+@media (min-width: 768px) {
+  table.compact-table {
+    table-layout: auto;
   }
 }
 

@@ -1,8 +1,9 @@
-import React, { useMemo } from 'react';
+import React, { useMemo, useState } from 'react';
 import { generatePaceTableData } from '../utils/paceCalculator';
 
 const PaceTable = ({ highlightMph, onRowClick }) => {
     const data = useMemo(() => generatePaceTableData(), []);
+    const [showTimeColumns, setShowTimeColumns] = useState(false);
 
     const activeRowMph = useMemo(() => {
         if (!highlightMph || isNaN(highlightMph)) return null;
@@ -16,18 +17,28 @@ const PaceTable = ({ highlightMph, onRowClick }) => {
     return (
         <div className="card">
             <h2 className="section-title">Common Paces</h2>
+            <button
+                onClick={() => setShowTimeColumns(!showTimeColumns)}
+                style={{ fontSize: '0.875rem', padding: '0.5rem 1rem', marginBottom: '1rem' }}
+            >
+                {showTimeColumns ? 'Hide' : 'Show'} Race Times
+            </button>
             <div style={{ overflowX: 'auto' }}>
-                <table>
+                <table className={showTimeColumns ? '' : 'compact-table'}>
                     <thead>
                         <tr>
                             <th>Min / Mile</th>
                             <th>Min / Km</th>
                             <th>MPH</th>
                             <th>KPH</th>
-                            <th>5k</th>
-                            <th>10k</th>
-                            <th>Half</th>
-                            <th>Marathon</th>
+                            {showTimeColumns && (
+                                <>
+                                    <th>5k</th>
+                                    <th>10k</th>
+                                    <th>Half</th>
+                                    <th>Marathon</th>
+                                </>
+                            )}
                         </tr>
                     </thead>
                     <tbody>
@@ -42,10 +53,14 @@ const PaceTable = ({ highlightMph, onRowClick }) => {
                                 <td>{row.paceKm}</td>
                                 <td>{row.mph}</td>
                                 <td>{row.kph}</td>
-                                <td>{row.time5k}</td>
-                                <td>{row.time10k}</td>
-                                <td>{row.timeHalf}</td>
-                                <td>{row.timeFull}</td>
+                                {showTimeColumns && (
+                                    <>
+                                        <td>{row.time5k}</td>
+                                        <td>{row.time10k}</td>
+                                        <td>{row.timeHalf}</td>
+                                        <td>{row.timeFull}</td>
+                                    </>
+                                )}
                             </tr>
                         ))}
                     </tbody>
