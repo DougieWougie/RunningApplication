@@ -67,6 +67,40 @@ To preview the production build locally:
 npm run preview
 ```
 
+## Docker
+
+This application can be run in a Docker container using Alpine Linux 3.21.
+
+### Building the Docker Image
+
+To build the Docker image:
+
+```bash
+docker build -t running-pace-calculator .
+```
+
+### Running the Container
+
+To run the container:
+
+```bash
+docker run -p 8080:80 running-pace-calculator
+```
+
+Open [http://localhost:8080](http://localhost:8080) in your browser to view the app.
+
+To run in detached mode:
+
+```bash
+docker run -d -p 8080:80 --name running-pace-calculator running-pace-calculator
+```
+
+To stop the container:
+
+```bash
+docker stop running-pace-calculator
+```
+
 ## Testing
 
 This project uses Vitest for unit testing.
