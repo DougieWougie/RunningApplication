@@ -18,6 +18,7 @@ const PaceTable = ({ highlightMph, onRowClick }) => {
         <div className="card">
             <h2 className="section-title">Common Paces</h2>
             <button
+                className="race-times-toggle"
                 onClick={() => setShowTimeColumns(!showTimeColumns)}
                 style={{ fontSize: '0.875rem', padding: '0.5rem 1rem', marginBottom: '1rem' }}
             >
@@ -31,14 +32,10 @@ const PaceTable = ({ highlightMph, onRowClick }) => {
                             <th>Min / Km</th>
                             <th>MPH</th>
                             <th>KPH</th>
-                            {showTimeColumns && (
-                                <>
-                                    <th>5k</th>
-                                    <th>10k</th>
-                                    <th>Half</th>
-                                    <th>Marathon</th>
-                                </>
-                            )}
+                            <th className={`race-time-col ${showTimeColumns ? 'active' : ''}`}>5k</th>
+                            <th className={`race-time-col ${showTimeColumns ? 'active' : ''}`}>10k</th>
+                            <th className={`race-time-col ${showTimeColumns ? 'active' : ''}`}>Half</th>
+                            <th className={`race-time-col ${showTimeColumns ? 'active' : ''}`}>Marathon</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -53,14 +50,10 @@ const PaceTable = ({ highlightMph, onRowClick }) => {
                                 <td>{row.paceKm}</td>
                                 <td>{row.mph}</td>
                                 <td>{row.kph}</td>
-                                {showTimeColumns && (
-                                    <>
-                                        <td>{row.time5k}</td>
-                                        <td>{row.time10k}</td>
-                                        <td>{row.timeHalf}</td>
-                                        <td>{row.timeFull}</td>
-                                    </>
-                                )}
+                                <td className={`race-time-col ${showTimeColumns ? 'active' : ''}`}>{row.time5k}</td>
+                                <td className={`race-time-col ${showTimeColumns ? 'active' : ''}`}>{row.time10k}</td>
+                                <td className={`race-time-col ${showTimeColumns ? 'active' : ''}`}>{row.timeHalf}</td>
+                                <td className={`race-time-col ${showTimeColumns ? 'active' : ''}`}>{row.timeFull}</td>
                             </tr>
                         ))}
                     </tbody>

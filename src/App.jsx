@@ -54,27 +54,30 @@ function App() {
 
   return (
     <>
-      <button className="theme-toggle" onClick={toggleTheme} aria-label="Toggle Dark Mode">
-        {theme === 'light' ? '🌙' : '☀️'}
-      </button>
-
-      <div className="font-size-controls">
-        <button
-          className="font-size-btn"
-          onClick={decreaseFontSize}
-          disabled={fontSize <= 12}
-          aria-label="Decrease Font Size"
-        >
-          A-
-        </button>
-        <button
-          className="font-size-btn"
-          onClick={increaseFontSize}
-          disabled={fontSize >= 24}
-          aria-label="Increase Font Size"
-        >
-          A+
-        </button>
+      <div className="app-header">
+        <div className="controls-row">
+          <div className="font-size-controls">
+            <button
+              className="font-size-btn"
+              onClick={decreaseFontSize}
+              disabled={fontSize <= 12}
+              aria-label="Decrease Font Size"
+            >
+              A-
+            </button>
+            <button
+              className="font-size-btn"
+              onClick={increaseFontSize}
+              disabled={fontSize >= 24}
+              aria-label="Increase Font Size"
+            >
+              A+
+            </button>
+          </div>
+          <button className="theme-toggle" onClick={toggleTheme} aria-label="Toggle Dark Mode">
+            {theme === 'light' ? '🌙' : '☀️'}
+          </button>
+        </div>
       </div>
 
       <div style={{ marginBottom: '1rem' }}>

@@ -188,6 +188,7 @@ table.compact-table {
 @media (min-width: 768px) {
   table.compact-table {
     table-layout: auto;
+    max-width: none;
   }
 }
 
@@ -225,9 +226,6 @@ tr:last-child td {
 }
 
 .theme-toggle {
-  position: absolute;
-  top: 1rem;
-  right: 1rem;
   padding: 0.5rem;
   border-radius: 50%;
   width: 40px;
@@ -237,10 +235,15 @@ tr:last-child td {
   justify-content: center;
 }
 
+.controls-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+  width: 100%;
+}
+
 .font-size-controls {
-  position: absolute;
-  top: 1rem;
-  left: 1rem;
   display: flex;
   gap: 0.5rem;
 }
@@ -309,4 +312,27 @@ tr:last-child td {
 
 .footer p {
   margin: 0;
+}
+
+/* Responsive Race Times Display */
+.race-times-toggle {
+  display: block;
+}
+
+.race-time-col {
+  display: none;
+}
+
+.race-time-col.active {
+  display: table-cell;
+}
+
+@media (min-width: 768px) {
+  .race-times-toggle {
+    display: none;
+  }
+
+  .race-time-col {
+    display: table-cell;
+  }
 }
