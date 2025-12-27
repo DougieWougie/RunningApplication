@@ -20,11 +20,10 @@ const PaceTable = ({ highlightMph, onRowClick }) => {
             <button
                 className="race-times-toggle"
                 onClick={() => setShowTimeColumns(!showTimeColumns)}
-                style={{ fontSize: '0.875rem', padding: '0.5rem 1rem', marginBottom: '1rem' }}
             >
                 {showTimeColumns ? 'Hide' : 'Show'} Race Times
             </button>
-            <div style={{ overflowX: 'auto' }}>
+            <div className="table-container">
                 <table className={showTimeColumns ? '' : 'compact-table'}>
                     <thead>
                         <tr>

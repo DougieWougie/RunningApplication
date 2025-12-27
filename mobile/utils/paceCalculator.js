@@ -9,7 +9,7 @@ export const kphToMph = (kph) => {
   return parseFloat((kph / 1.60934).toFixed(2));
 };
 
-export const speedToPace = (speed) => {
+export const speedToPace = (speed, unit = 'mph') => {
   // speed in unit (mph or kph)
   // returns string "MM:SS" per mile or per km
   if (!speed || speed <= 0) return "00:00";
@@ -22,7 +22,7 @@ export const speedToPace = (speed) => {
   return `${minutes}:${paddedSeconds}`;
 };
 
-export const paceToSpeed = (minutes, seconds) => {
+export const paceToSpeed = (minutes, seconds, unit = 'mph') => {
   // returns speed in unit
   const totalHours = (parseInt(minutes) + parseInt(seconds) / 60) / 60;
   if (totalHours <= 0) return 0;

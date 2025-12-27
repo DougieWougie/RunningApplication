@@ -9,6 +9,7 @@ const Converter = ({ onSpeedChange, selectedRowData }) => {
 
     useEffect(() => {
         if (selectedRowData) {
+            // eslint-disable-next-line react-hooks/set-state-in-effect
             setMph(selectedRowData.mph);
             setKph(selectedRowData.kph);
             setPaceMile(selectedRowData.paceMile);
@@ -85,6 +86,7 @@ const Converter = ({ onSpeedChange, selectedRowData }) => {
                     <input
                         id="mph"
                         type="number"
+                        inputMode="decimal"
                         placeholder="e.g. 6.0"
                         value={mph}
                         onChange={handleMphChange}
@@ -95,6 +97,7 @@ const Converter = ({ onSpeedChange, selectedRowData }) => {
                     <input
                         id="kph"
                         type="number"
+                        inputMode="decimal"
                         placeholder="e.g. 9.65"
                         value={kph}
                         onChange={handleKphChange}

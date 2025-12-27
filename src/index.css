@@ -282,8 +282,25 @@ tr:last-child td {
   }
 }
 
+.header-image-container {
+  margin-bottom: 1rem;
+}
+
 .header-image {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 4px solid var(--color-primary);
+  box-shadow: var(--shadow-md);
   transition: transform 0.1s ease;
+}
+
+@media (min-width: 768px) {
+  .header-image {
+    width: 150px;
+    height: 150px;
+  }
 }
 
 .header-image:hover {
@@ -317,6 +334,10 @@ tr:last-child td {
 /* Responsive Race Times Display */
 .race-times-toggle {
   display: block;
+  width: 100%;
+  margin-bottom: 1rem;
+  padding: 0.75rem;
+  font-size: 1rem;
 }
 
 .race-time-col {
@@ -327,6 +348,15 @@ tr:last-child td {
   display: table-cell;
 }
 
+.table-container {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
+  margin-left: -1rem; /* Negative margin to let table touch edges on small mobile */
+  margin-right: -1rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
 @media (min-width: 768px) {
   .race-times-toggle {
     display: none;
@@ -334,5 +364,20 @@ tr:last-child td {
 
   .race-time-col {
     display: table-cell;
+  }
+
+  .table-container {
+    margin-left: 0;
+    margin-right: 0;
+    padding-left: 0;
+    padding-right: 0;
+    overflow-x: visible;
+  }
+}
+
+/* Ensure inputs don't auto-zoom on iOS */
+@media screen and (max-width: 768px) {
+  input, select, textarea {
+    font-size: 16px !important;
   }
 }

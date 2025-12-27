@@ -3,34 +3,31 @@ import Converter from './components/Converter';
 import PaceTable from './components/PaceTable';
 
 function App() {
-  const [theme, setTheme] = useState('light');
+  const [theme, setTheme] = useState(() => {
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme) return savedTheme;
+    if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) return 'dark';
+    return 'light';
+  });
+  
   const [highlightMph, setHighlightMph] = useState(null);
-  const [fontSize, setFontSize] = useState(16);
+  
+  const [fontSize, setFontSize] = useState(() => {
+    const savedFontSize = localStorage.getItem('fontSize');
+    return savedFontSize ? parseInt(savedFontSize) : 16;
+  });
+  
   const [selectedRowData, setSelectedRowData] = useState(null);
 
   useEffect(() => {
-    // Check system preference or saved preference
-    const savedTheme = localStorage.getItem('theme');
-    if (savedTheme) {
-      setTheme(savedTheme);
-      document.documentElement.setAttribute('data-theme', savedTheme);
-    } else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
-      setTheme('dark');
-      document.documentElement.setAttribute('data-theme', 'dark');
-    }
-  }, []);
+    document.documentElement.setAttribute('data-theme', theme);
+    localStorage.setItem('theme', theme);
+  }, [theme]);
 
   useEffect(() => {
     document.documentElement.style.setProperty('--base-font-size', `${fontSize}px`);
     localStorage.setItem('fontSize', fontSize);
   }, [fontSize]);
-
-  useEffect(() => {
-    const savedFontSize = localStorage.getItem('fontSize');
-    if (savedFontSize) {
-      setFontSize(parseInt(savedFontSize));
-    }
-  }, []);
 
   const toggleTheme = () => {
     const newTheme = theme === 'light' ? 'dark' : 'light';
@@ -80,19 +77,11 @@ function App() {
         </div>
       </div>
 
-      <div style={{ marginBottom: '1rem' }}>
+      <div className="header-image-container">
         <img
           className="header-image"
           src="/header-image.png"
           alt="Mascot"
-          style={{
-            width: '150px',
-            height: '150px',
-            borderRadius: '50%',
-            objectFit: 'cover',
-            border: '4px solid var(--color-primary)',
-            boxShadow: 'var(--shadow-md)'
-          }}
         />
       </div>
 
